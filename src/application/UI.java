@@ -19,7 +19,7 @@ public class UI {
     if (piece == null) {
       return "-";
     } else {
-      return "piece";
+      return piece.toString();
     }
   }
 }
