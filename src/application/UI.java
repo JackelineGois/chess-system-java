@@ -51,22 +51,51 @@ public class UI {
     for (int i = 0; i < pieces.length; i++) {
       String pieceLine = "";
       for (int j = 0; j < pieces.length; j++) {
-        pieceLine += printPiece(pieces[i][j]) + " ";
+        pieceLine += printPiece(pieces[i][j], false) + " ";
       }
       System.out.println((8 - i) + " " + pieceLine);
     }
     System.out.println("  a b c d e f g h");
   }
 
-  private static String printPiece(ChessPiece piece) {
+  public static void printBoard(
+    ChessPiece[][] pieces,
+    boolean[][] possibleMoves
+  ) {
+    String validMoves = "Valid Moves ";
+    for (int i = 0; i < pieces.length; i++) {
+      String pieceLine = "";
+      for (int j = 0; j < pieces.length; j++) {
+        pieceLine += printPiece(pieces[i][j], possibleMoves[i][j]) + " ";
+      }
+      System.out.println((8 - i) + " " + pieceLine);
+    }
+    System.out.println("  a b c d e f g h");
+
+    System.out.println(validMoves);
+  }
+
+  private static String printPiece(ChessPiece piece, boolean background) {
+    String message = "";
+
+    if (background) {
+      message += ANSI_RED_BACKGROUND;
+    }
+
     if (piece == null) {
-      return "-";
+      message += "-";
     } else {
       if (piece.getColor() == Color.WHITE) {
-        return ANSI_WHITE + piece.toString() + ANSI_RESET;
+        message += ANSI_WHITE + piece.toString() + ANSI_RESET;
       } else {
-        return ANSI_YELLOW + piece.toString() + ANSI_RESET;
+        message += ANSI_YELLOW + piece.toString() + ANSI_RESET;
       }
     }
+
+    if (background) {
+      message += ANSI_RESET;
+    }
+
+    return message;
   }
 }
