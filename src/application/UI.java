@@ -62,7 +62,6 @@ public class UI {
     ChessPiece[][] pieces,
     boolean[][] possibleMoves
   ) {
-    String validMoves = "Valid Moves ";
     for (int i = 0; i < pieces.length; i++) {
       String pieceLine = "";
       for (int j = 0; j < pieces.length; j++) {
@@ -71,8 +70,6 @@ public class UI {
       System.out.println((8 - i) + " " + pieceLine);
     }
     System.out.println("  a b c d e f g h");
-
-    System.out.println(validMoves);
   }
 
   private static String printPiece(ChessPiece piece, boolean background) {
